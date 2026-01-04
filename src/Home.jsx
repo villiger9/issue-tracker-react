@@ -1,29 +1,12 @@
-import { useEffect, useState } from "react";
 import IssueList from "./IssueList";
+import useFetch from "./useFetch";
 
 const Home = () => {
-  const [issues, setIssues] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    fetch("http://localhost:5000/issues")
-      .then((res) => {
-        if (!res.ok) {
-          throw Error("could not fetch data for that resource");
-        }
-        return res.json();
-      })
-      .then((data) => {
-        setIssues(data);
-        setIsLoading(false);
-        setError(null);
-      })
-      .catch((err) => {
-        setError(err.message);
-        setIsLoading(false);
-      });
-  }, []);
+  const {
+    data: issues,
+    isLoading,
+    error,
+  } = useFetch("http://localhost:5000/issues");
 
   return (
     <div className="home">
