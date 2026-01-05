@@ -1,4 +1,5 @@
 import Home from "./Home";
+import Create from "./Create";
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -11,6 +12,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
       <Route index element={<Home />}></Route>
+      <Route path="create" element={<Create />}></Route>
     </Route>
   )
 );
