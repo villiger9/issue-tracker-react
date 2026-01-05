@@ -34,7 +34,7 @@
   padding: 20px;
 }
 
-/* blog previews / list */
+/* issue previews / list */
 .issue-preview {
   padding: 10px 16px;
   margin: 20px 0;
@@ -48,3 +48,23 @@
   color: #f1356d;
   margin-bottom: 8px;
 }
+.issue-preview a {
+  text-decoration: none;
+}
+/* issue details page */
+.issue-details h2 {
+  font-size: 20px;
+  color: #f1356d;
+  margin-bottom: 10px;
+}
+.issue-details div {
+  margin: 20px 0;
+}
+/* .issue-details button {
+  background: #f1356d;
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+} */

@@ -1,5 +1,7 @@
 import Home from "./Home";
 import Create from "./Create";
+import IssueDetails from "./IssueDetails";
+
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -13,6 +15,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<RootLayout />}>
       <Route index element={<Home />}></Route>
       <Route path="create" element={<Create />}></Route>
+      <Route path="issues/:id" element={<IssueDetails />}></Route>
     </Route>
   )
 );
