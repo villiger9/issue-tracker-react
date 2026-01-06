@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Create = () => {
   const [title, setTitle] = useState("");
@@ -6,6 +7,7 @@ const Create = () => {
   const [priority, setPriority] = useState("low");
   const [status, setStatus] = useState("open");
   const [isPending, setIsPending] = useState(false);
+  const navigate = useNavigate(); // Initialize the hook
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,6 +20,7 @@ const Create = () => {
     }).then(() => {
       console.log("added");
       setIsPending(false);
+      navigate("/"); // Send them back to the homepage
     });
   };
 
@@ -57,3 +60,6 @@ const Create = () => {
 };
 
 export default Create;
+
+// the modern way to handle this actually moves all that useState and fetch logic out of the component entirely!
+// In the new version, you use a Form component and an action function

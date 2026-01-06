@@ -9,6 +9,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import RootLayout from "./layouts/RootLayout";
+import NotFound from "./NotFound";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -16,6 +17,7 @@ const router = createBrowserRouter(
       <Route index element={<Home />}></Route>
       <Route path="create" element={<Create />}></Route>
       <Route path="issues/:id" element={<IssueDetails />}></Route>
+      <Route path="*" element={<NotFound />}></Route>
     </Route>
   )
 );
@@ -25,24 +27,3 @@ function App() {
 }
 
 export default App;
-
-/* import { 
-  createBrowserRouter, 
-  createRoutesFromElements, 
-  Route, 
-  RouterProvider 
-} from "react-router-dom";
-
-// 1. Define the router outside the component
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route path="/" element={<RootLayout />}> {// RootLayout contains your Navbar and Outlet }
-      <Route index element={<Home />} />
-    </Route>
-  )
-); 
-
-function App() {
-  // 2. Use RouterProvider instead of <Router>
-  return <RouterProvider router={router} />;
-} */
