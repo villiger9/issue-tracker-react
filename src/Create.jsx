@@ -1,65 +1,82 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Form, redirect, useNavigate, useNavigation } from "react-router-dom";
 
 const Create = () => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [priority, setPriority] = useState("low");
-  const [status, setStatus] = useState("open");
-  const [isPending, setIsPending] = useState(false);
-  const navigate = useNavigate(); // Initialize the hook
+  const navigation = useNavigation();
+  const isSubmitting = navigation.state === "submitting";
+  // const [title, setTitle] = useState("");
+  // const [description, setDescription] = useState("");
+  // const [priority, setPriority] = useState("low");
+  // const [status, setStatus] = useState("open");
+  // const [isPending, setIsPending] = useState(false);
+  // const navigate = useNavigate(); // Initialize the hook
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const issue = { title, description, priority, status };
-    setIsPending(true);
-    fetch("http://localhost:5000/issues", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(issue),
-    }).then(() => {
-      console.log("added");
-      setIsPending(false);
-      navigate("/"); // Send them back to the homepage
-    });
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   const issue = { title, description, priority, status };
+  //   setIsPending(true);
+  //   fetch("http://localhost:5000/issues", {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify(issue),
+  //   }).then(() => {
+  //     console.log("added");
+  //     setIsPending(false);
+  //     navigate("/"); // Send them back to the homepage
+  //   });
+  // };
 
   return (
     <div className="create">
       <h2>Create a new issue</h2>
-      <form onSubmit={handleSubmit}>
+      <Form method="post" action="/create">
         <label>Issue title: </label>
-        <input
-          type="text"
-          required
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
+        <input type="text" name="title" required />
         <label>Issue description: </label>
-        <textarea
-          required
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
+        <textarea name="description" required />
         <label>Issue priority: </label>
-        <select value={priority} onChange={(e) => setPriority(e.target.value)}>
+        <select name="priority">
           <option value="high">high</option>
           <option value="medium">medium</option>
           <option value="low">low</option>
         </select>
         <label>Issue status: </label>
-        <select value={status} onChange={(e) => setStatus(e.target.value)}>
+        <select name="status">
           <option value="open">open</option>
           <option value="closed">closed </option>
         </select>
-        {!isPending && <button>Add Issue</button>}
-        {isPending && <button disabled>Adding...</button>}
-      </form>
+        <button disabled={isSubmitting}>
+          {isSubmitting ? "Adding..." : "Add Issue"}
+        </button>
+      </Form>
     </div>
   );
 };
 
 export default Create;
 
-// the modern way to handle this actually moves all that useState and fetch logic out of the component entirely!
-// In the new version, you use a Form component and an action function
+export const createIssueAction = async ({ request }) => {
+  const data = await request.formData();
+
+  // Package the form data into an object
+  const issue = {
+    title: data.get("title"),
+    description: data.get("description"),
+    priority: data.get("priority"),
+    status: data.get("status"),
+  };
+
+  // Perform the fetch
+  const res = await fetch("http://localhost:5000/issues", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(issue),
+  });
+
+  if (!res.ok) {
+    throw Error("Could not create the issue");
+  }
+
+  // Redirect the user
+  return redirect("/");
+};

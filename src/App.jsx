@@ -1,5 +1,5 @@
 import Home from "./Home";
-import Create from "./Create";
+import Create, { createIssueAction } from "./Create";
 import IssueDetails from "./IssueDetails";
 
 import {
@@ -15,7 +15,11 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
       <Route index element={<Home />}></Route>
-      <Route path="create" element={<Create />}></Route>
+      <Route
+        path="create"
+        element={<Create />}
+        action={createIssueAction}
+      ></Route>
       <Route path="issues/:id" element={<IssueDetails />}></Route>
       <Route path="*" element={<NotFound />}></Route>
     </Route>
