@@ -21,6 +21,7 @@
   margin: 0;
   font-family: "Quicksand";
   color: var(--text-color);
+  background-color: var(--bg-color);
 }
 .navbar {
   padding: 20px;
@@ -28,10 +29,10 @@
   align-items: center;
   max-width: 600px;
   margin: 0 auto;
-  border-bottom: 1px solid #f2f2f2;
+  border-bottom: 1px solid var(--card-bg);
 }
 .navbar h1 {
-  color: #f1356d;
+  color: var(--primary-color);
 }
 .navbar .links {
   margin-left: auto;
@@ -48,6 +49,15 @@
   max-width: 600px;
   margin: 40px auto;
   padding: 20px;
+}
+
+button {
+  background: var(--primary-color);
+  color: var(--card-bg);
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
 /* issue previews / list */
@@ -76,14 +86,6 @@
 .issue-details div {
   margin: 20px 0;
 }
-.issue-details button {
-  background: var(--primary-color);
-  color: #fff;
-  border: 0;
-  padding: 8px;
-  border-radius: 8px;
-  cursor: pointer;
-}
 
 /* create new issue form */
 .create {
@@ -106,15 +108,7 @@
   width: 100%;
   padding: 6px 10px;
   margin: 10px 0;
-  border: 1px solid #ddd;
+  border: 1px solid var(--card-bg);
   box-sizing: border-box;
   display: block;
-}
-.create button {
-  background: var(--primary-color);
-  color: #fff;
-  border: 0;
-  padding: 8px;
-  border-radius: 8px;
-  cursor: pointer;
 }
