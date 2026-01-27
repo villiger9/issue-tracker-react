@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import RootLayout from "./layouts/RootLayout";
 import NotFound from "./NotFound";
+import { ThemeProvider } from "./contexts/ThemeContext";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,12 +23,16 @@ const router = createBrowserRouter(
       ></Route>
       <Route path="issues/:id" element={<IssueDetails />}></Route>
       <Route path="*" element={<NotFound />}></Route>
-    </Route>
-  )
+    </Route>,
+  ),
 );
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <ThemeProvider>
+      <RouterProvider router={router} />
+    </ThemeProvider>
+  );
 }
 
 export default App;
