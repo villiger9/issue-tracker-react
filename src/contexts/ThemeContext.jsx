@@ -9,8 +9,6 @@ export const ThemeProvider = ({ children }) => {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
   };
 
-  // This is the magic part:
-  // It applies the [data-theme] attribute to the <html> or <body> tag
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);

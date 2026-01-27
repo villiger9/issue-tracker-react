@@ -18,31 +18,49 @@
 
 /* base styles */
 * {
+  box-sizing: border-box; /* Professional standard */
   margin: 0;
   font-family: "Quicksand";
-  color: var(--text-color);
+}
+body {
   background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease;
 }
 .navbar {
   padding: 20px;
   display: flex;
   align-items: center;
-  max-width: 600px;
+  justify-content: space-between;
+  max-width: auto;
   margin: 0 auto;
   border-bottom: 1px solid var(--card-bg);
 }
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-menu a,
+.nav-menu .theme-icon {
+  text-decoration: none;
+  color: var(--text-color);
+  transition: color 0.2s ease;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
 .navbar h1 {
   color: var(--primary-color);
 }
 .navbar .links {
   margin-left: auto;
 }
-.navbar a {
-  margin-left: 16px;
-  text-decoration: none;
-  padding: 6px;
-}
-.navbar a:hover {
+.nav-menu a:hover,
+.nav-menu .theme-icon:hover {
   color: var(--primary-color);
 }
 .content {
