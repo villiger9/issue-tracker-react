@@ -6,7 +6,7 @@ export default function RootLayout() {
     <div className="layout">
       <header>
         <nav className="navbar">
-          <h1>The issue tracker</h1>
+          <h1 class="text-3xl font-bold">The issue tracker</h1>
           <div className="nav-menu">
             <NavLink to="/">Home</NavLink>
             <NavLink to="create">New Issue</NavLink>
